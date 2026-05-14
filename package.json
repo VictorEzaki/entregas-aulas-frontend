@@ -20,7 +20,7 @@
     "swagger",
     "petshop"
   ],
-  "author": "OpenAI",
+  "author": "Victor",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
