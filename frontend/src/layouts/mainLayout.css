@@ -1,0 +1,176 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Layout principal */
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  background-color: #F8F6F2;
+  color: #2D2D2D;
+}
+
+/* Sidebar */
+.main-layout aside {
+  width: 280px;
+
+  background:
+    linear-gradient(
+      180deg,
+      #1E3A5F 0%,
+      #243F63 100%
+    );
+
+  padding: 32px 24px;
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow:
+    4px 0 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Logo / título */
+.main-layout aside h2 {
+  color: #FFFFFF;
+
+  font-size: 2rem;
+  font-weight: 700;
+
+  margin-bottom: 40px;
+
+  position: relative;
+}
+
+/* Linha decorativa premium */
+.main-layout aside h2::after {
+  content: "";
+
+  display: block;
+
+  width: 60px;
+  height: 4px;
+
+  margin-top: 10px;
+
+  border-radius: 999px;
+
+  background-color: #D9A441;
+}
+
+/* Navegação */
+.main-layout aside nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Links */
+.main-layout aside nav a {
+  text-decoration: none;
+
+  color: #D8E1EC;
+
+  padding: 14px 16px;
+
+  border-radius: 14px;
+
+  font-size: 1rem;
+  font-weight: 500;
+
+  transition: 0.25s ease;
+
+  position: relative;
+}
+
+/* Hover moderno */
+.main-layout aside nav a:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #FFFFFF;
+
+  transform: translateX(4px);
+}
+
+/* Link ativo */
+.main-layout aside nav a:focus,
+.main-layout aside nav a:active {
+  background:
+    linear-gradient(
+      135deg,
+      rgba(217, 164, 65, 0.18),
+      rgba(217, 164, 65, 0.08)
+    );
+
+  color: #FFFFFF;
+
+  border: 1px solid rgba(217, 164, 65, 0.35);
+}
+
+/* Conteúdo principal */
+.main-layout-content {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 24px 32px;
+}
+
+/* Topbar */
+.main-layout-topbar {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  margin-bottom: 24px;
+}
+
+/* Botão sair */
+.main-layout-topbar button {
+  height: 48px;
+
+  padding: 0 22px;
+
+  border: none;
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #D9A441,
+      #C8922F
+    );
+
+  color: white;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+
+  box-shadow:
+    0 10px 20px rgba(217, 164, 65, 0.18);
+}
+
+.main-layout-topbar button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 28px rgba(217, 164, 65, 0.25);
+}
+
+.main-layout-topbar button:active {
+  transform: translateY(0);
+}
+
+/* Área das páginas */
+.main-layout-page {
+  flex: 1;
+}

@@ -1,0 +1,268 @@
+/* Página */
+.owners-page {
+  padding: 32px;
+  background-color: #F8F6F2;
+  min-height: 100vh;
+
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+  color: #2D2D2D;
+}
+
+/* Títulos */
+.owners-page h1 {
+  font-size: 2.5rem;
+  color: #1E3A5F;
+  margin-bottom: 8px;
+}
+
+.owners-page h2 {
+  font-size: 1.6rem;
+  color: #1E3A5F;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.owners-page h3 {
+  color: #1E3A5F;
+  margin-bottom: 14px;
+}
+
+.owners-page p {
+  color: #5B6470;
+  line-height: 1.6;
+}
+
+/* Linha */
+.owners-page hr {
+  border: none;
+  height: 1px;
+  background-color: #E2E8F0;
+  margin: 30px 0;
+}
+
+/* Mensagem */
+.owners-page > p:first-of-type {
+  margin-top: 10px;
+}
+
+/* Formulário */
+.owners-page form {
+  background: rgba(255, 255, 255, 0.95);
+
+  padding: 32px;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  max-width: 700px;
+}
+
+/* Grupos */
+.owners-page form div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Labels */
+.owners-page label {
+  font-weight: 600;
+  color: #1E3A5F;
+}
+
+/* Inputs */
+.owners-page input,
+.owners-page textarea {
+  width: 100%;
+
+  border: 1px solid #D8DCE2;
+  border-radius: 14px;
+
+  background-color: #F8F6F2;
+
+  padding: 14px 16px;
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition: 0.25s ease;
+}
+
+/* Textarea */
+.owners-page textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Focus */
+.owners-page input:focus,
+.owners-page textarea:focus {
+  border-color: #D9A441;
+
+  background-color: white;
+
+  box-shadow:
+    0 0 0 4px rgba(217, 164, 65, 0.15);
+}
+
+/* Botões */
+.owners-page button {
+  border: none;
+  border-radius: 14px;
+
+  padding: 14px 20px;
+
+  font-size: 0.95rem;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: 0.25s ease;
+}
+
+/* Botão principal */
+.owners-page form button[type="submit"] {
+  background:
+    linear-gradient(
+      135deg,
+      #D9A441,
+      #C8922F
+    );
+
+  color: white;
+
+  box-shadow:
+    0 10px 20px rgba(217, 164, 65, 0.18);
+}
+
+.owners-page form button[type="submit"]:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 14px 28px rgba(217, 164, 65, 0.25);
+}
+
+/* Botão cancelar */
+.owners-page form button[type="button"] {
+  background-color: #E5E7EB;
+  color: #374151;
+}
+
+.owners-page form button[type="button"]:hover {
+  background-color: #D1D5DB;
+}
+
+/* Campo busca */
+.owners-page > input {
+  width: 100%;
+  max-width: 500px;
+
+  border: 1px solid #D8DCE2;
+  border-radius: 14px;
+
+  background-color: white;
+
+  padding: 14px 16px;
+
+  font-size: 1rem;
+
+  outline: none;
+
+  transition: 0.25s ease;
+}
+
+.owners-page > input:focus {
+  border-color: #D9A441;
+
+  box-shadow:
+    0 0 0 4px rgba(217, 164, 65, 0.15);
+}
+
+/* Tabela */
+.owners-page table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background-color: white;
+
+  border-radius: 20px;
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+
+  margin-top: 20px;
+}
+
+/* Cabeçalho */
+.owners-page thead {
+  background:
+    linear-gradient(
+      135deg,
+      #1E3A5F,
+      #243F63
+    );
+}
+
+.owners-page th {
+  color: white;
+  text-align: left;
+
+  padding: 18px;
+  font-size: 0.95rem;
+}
+
+/* Corpo */
+.owners-page td {
+  padding: 18px;
+
+  border-bottom: 1px solid #ECEFF3;
+
+  color: #374151;
+}
+
+/* Hover linhas */
+.owners-page tbody tr:hover {
+  background-color: #F8FAFC;
+}
+
+/* Ações */
+.owners-page td button {
+  margin-right: 10px;
+  margin-bottom: 8px;
+}
+
+/* Detalhes */
+.owners-page > div:last-child {
+  margin-top: 40px;
+
+  background-color: white;
+
+  padding: 32px;
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.08);
+
+  max-width: 700px;
+}
+
+/* Lista pets */
+.owners-page ul {
+  margin-top: 10px;
+  padding-left: 20px;
+}
+
+.owners-page li {
+  margin-bottom: 8px;
+  color: #374151;
+}
