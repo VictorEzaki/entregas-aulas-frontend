@@ -4,7 +4,6 @@ import MainLayout from "../../layouts/MainLayout";
 function Pets(){
     return(
         <>
-            <MainLayout /> 
         </>
     )
 }

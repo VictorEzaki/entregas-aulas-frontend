@@ -1,21 +1,22 @@
 import { Outlet, Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import './mainLayout.css'
+import "./mainLayout.css";
 
-function MainLayout(){
-    const { logout } = useContext(AuthContext)
-    const navigate = useNavigate
+function MainLayout() {
+    const { logout } = useContext(AuthContext);
+    const navigate = useNavigate();
 
-    function handleLogout(){
-        logout()
-        navigate('/')
+    function handleLogout() {
+        logout();
+        navigate("/");
     }
 
     return (
         <div className="main-layout">
             <aside>
                 <h2>PetShop</h2>
+
                 <nav>
                     <Link to="/dashboard">Dashboard</Link>
                     <Link to="/pets">Pets</Link>
@@ -26,11 +27,19 @@ function MainLayout(){
                 </nav>
             </aside>
 
-            <div className="main-layout-topbar">
-                <button onClick={handleLogout}>Sair</button>
-            </div>
+            <main className="main-layout-content">
+                <div className="main-layout-topbar">
+                    <button onClick={handleLogout}>
+                        Sair
+                    </button>
+                </div>
+
+                <div className="main-layout-page">
+                    <Outlet />
+                </div>
+            </main>
         </div>
-    )
+    );
 }
 
-export default MainLayout
+export default MainLayout;
