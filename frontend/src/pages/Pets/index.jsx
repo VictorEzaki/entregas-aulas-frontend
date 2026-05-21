@@ -21,6 +21,9 @@ export default function PetsPage() {
     const [editingPet, setEditingPet] = useState(null);
     const [detailPet, setDetailPet] = useState(null);
     const [message, setMessage] = useState('');
+    const [toggleError, setToggleError] = useState(false);
+
+    const classError = toggleError ? 'error-none' : 'error'
 
     async function loadData() {
         try {
@@ -89,11 +92,13 @@ export default function PetsPage() {
             !form.weight
         ) {
             setMessage('Preencha os campos obrigatórios.');
+            setToggleError(true)
             return;
         }
         
         if (form.weight <= 0) {
-            setMessage('Preencha os campos obrigatórios.');
+            setMessage('Peso não pode ser menor ou igual a 0.');
+            setToggleError(true)
             return;
         }
 
@@ -115,9 +120,11 @@ export default function PetsPage() {
                 await petsService.create(payload);
                 setMessage('Pet cadastrado com sucesso.');
             }
+            setToggleError(true)
             clearForm();
             loadData();
         } catch (error) {
+            setToggleError(true)
             setMessage('Erro ao salvar pet.');
         }
     }
@@ -165,6 +172,10 @@ export default function PetsPage() {
             pet.owner?.name?.toLowerCase().includes(term)
         );
     });
+
+    async function handleError() {
+        setToggleError(!toggleError);
+    }
     if (loading) {
         return <p>Carregando pets...</p>;
     }
@@ -172,8 +183,12 @@ export default function PetsPage() {
         <div className="pets-page">
             <h1>Pets</h1>
             <p>Cadastre e acompanhe os animais atendidos pelo petshop.</p>
-
-            {message && <p>{message}</p>}
+            {toggleError && (
+                <span className={classError}>
+                    <p>{message}</p>
+                    <button type='button' onClick={handleError}>Ok</button>
+                </span>
+            )}
 
             <hr />
 
