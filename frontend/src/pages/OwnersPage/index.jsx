@@ -214,7 +214,7 @@ export default function OwnersPage() {
                 <p>Nenhum dono encontrado.</p>
             ) : (
                 <div>
-                    <p>{filteredOwners.length} Donos cadastrados.</p>
+                    <p>{owners.length} Donos cadastrados.</p>
                     <table border="1" cellPadding="5">
                         <thead>
                             <tr>
