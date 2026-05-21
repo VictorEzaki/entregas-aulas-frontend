@@ -18,7 +18,10 @@ export default function OwnersPage() {
     const [editingOwner, setEditingOwner] = useState(null);
     const [detailOwner, setDetailOwner] = useState(null);
     const [message, setMessage] = useState('');
+    const [toggleError, setToggleError] = useState(false);
     // As funções e o retorno HTML serão criados nas próximas etapas. 
+
+    const classError = toggleError ? 'error-none' : 'error'
 
     async function loadOwners() {
         try {
@@ -51,10 +54,21 @@ export default function OwnersPage() {
 
     async function handleSubmit(event) {
         event.preventDefault();
+
+        setMessage('');
+        const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // regex para verificar se o e-mail contém 'nome@dominio.extensao'
+
         if (!form.name || !form.document || !form.phone || !form.email || !form.address) {
             setMessage('Preencha todos os campos.');
             return;
         }
+
+        if (!emailValido.test(form.email)) {
+            setMessage('E-mail inválido');
+            setToggleError(true)
+            return
+        }
+
         try {
             if (editingOwner) {
                 await ownersService.update(editingOwner.id, form);
@@ -63,9 +77,11 @@ export default function OwnersPage() {
                 await ownersService.create(form);
                 setMessage('Dono cadastrado com sucesso.');
             }
+            setToggleError(true)
             clearForm();
             loadOwners();
         } catch (error) {
+            setToggleError(true)
             setMessage('Erro ao salvar dono.');
         }
     }
@@ -102,12 +118,17 @@ export default function OwnersPage() {
         }
     }
 
+    async function handleError() {
+        setToggleError(!toggleError);
+    }
+
     const filteredOwners = owners.filter((owner) => {
         const term = search.toLowerCase();
         return (
             owner.name?.toLowerCase().includes(term) ||
             owner.document?.toLowerCase().includes(term) ||
             owner.phone?.toLowerCase().includes(term) ||
+            owner.address?.toLowerCase().includes(term) ||
             owner.email?.toLowerCase().includes(term)
         );
     });
@@ -120,8 +141,12 @@ export default function OwnersPage() {
         <div className='owners-page'>
             <h1>Donos</h1>
             <p>Gerencie os responsáveis pelos pets cadastrados.</p>
-
-            {message && <p>{message}</p>}
+            {toggleError && (
+                <span className={classError}>
+                    <p>{message}</p>
+                    <button type='button' onClick={handleError}>Ok</button>
+                </span>
+            )}
 
             <hr />
 
@@ -161,16 +186,17 @@ export default function OwnersPage() {
                 </div>
 
                 <br />
-
-                <button type="submit">
-                    {editingOwner ? 'Salvar alterações' : 'Cadastrar dono'}
-                </button>
-
-                {editingOwner && (
-                    <button type="button" onClick={clearForm}>
-                        Cancelar
+                <div className='container-button'>
+                    <button type="submit">
+                        {editingOwner ? 'Salvar alterações' : 'Cadastrar dono'}
                     </button>
-                )}
+
+                    {editingOwner && (
+                        <button type="button" onClick={clearForm}>
+                            Cancelar
+                        </button>
+                    )}
+                </div>
             </form>
 
             <h2>Lista de donos</h2>
@@ -187,33 +213,38 @@ export default function OwnersPage() {
             {filteredOwners.length === 0 ? (
                 <p>Nenhum dono encontrado.</p>
             ) : (
-                <table border="1" cellPadding="5">
-                    <thead>
-                        <tr>
-                            <th>Nome</th>
-                            <th>Documento</th>
-                            <th>Telefone</th>
-                            <th>Email</th>
-                            <th>Ações</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        {filteredOwners.map((owner) => (
-                            <tr key={owner.id}>
-                                <td>{owner.name}</td>
-                                <td>{owner.document}</td>
-                                <td>{owner.phone}</td>
-                                <td>{owner.email}</td>
-                                <td>
-                                    <button onClick={() => handleDetails(owner)}>Detalhes</button>
-                                    <button onClick={() => handleEdit(owner)}>Editar</button>
-                                    <button onClick={() => handleDelete(owner)}>Excluir</button>
-                                </td>
+                <div>
+                    <p>{filteredOwners.length} Donos cadastrados.</p>
+                    <table border="1" cellPadding="5">
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Documento</th>
+                                <th>Telefone</th>
+                                <th>Email</th>
+                                <th>Endereço</th>
+                                <th>Ações</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+
+                        <tbody>
+                            {filteredOwners.map((owner) => (
+                                <tr key={owner.id}>
+                                    <td>{owner.name}</td>
+                                    <td>{owner.document}</td>
+                                    <td>{owner.phone}</td>
+                                    <td>{owner.email}</td>
+                                    <td>{owner.address}</td>
+                                    <td>
+                                        <button onClick={() => handleDetails(owner)}>Detalhes</button>
+                                        <button onClick={() => handleEdit(owner)}>Editar</button>
+                                        <button onClick={() => handleDelete(owner)}>Excluir</button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
             )}
             {detailOwner && (
                 <div>

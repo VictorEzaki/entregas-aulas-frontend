@@ -119,6 +119,13 @@
   margin-right: 10px;
 }
 
+.pets-page .container-button {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 /* primário */
 .pets-page button[type="submit"] {
   background: linear-gradient(135deg, #D9A441, #C8922F);
